@@ -1,6 +1,8 @@
 NUS Reach (iOS 6)
 ==================
 
+![NUS Reach](NUS Reach.png)
+
 NUS Reach is aimed to help the NUS community, including students and faculty, to know about what is happenings around the NUS campus. Currently, the only way to view all the events is through IVLE or through the NUS calendar of events, none of which are user friendly. Furthermore, given the large size of the campus, locating certain events is a common problem faced by many NUS students. This application will make this experience a lot more intuitive by displaying all the events on the NUS map, while also helping to enhance social interaction within the NUS community. The application will also prove to be an essential utility for incoming students to get to know the popular events happening across the campus.
 
 Our application provides a dynamic experience customized purely for the user. Apart from the various filters available, the user can enter his interests and the application displays the events related to his/her interest on the map (or alternatively, in a list form). If the user is interested in career talks, the map will display all the career talks happening on that day, along with his other interests. In addition, the user can also create events that can be viewed by everyone in NUS. While doing so, the user has the option of publishing it on IVLE (official event) or making it an informal student event.
