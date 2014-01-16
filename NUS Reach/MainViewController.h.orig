@@ -1,0 +1,42 @@
+//
+//  MainViewController.h
+//  NUS Reach
+//
+//  Created by Raunak on 27/3/13.
+//  Copyright (c) 2013 nus.cs3217. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MapViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "SideFilterViewController.h"
+#import "DatabaseHandler.h"
+<<<<<<< HEAD
+#import "EventsViewController.h"
+#import <EventKit/EventKit.h>
+
+@interface MainViewController : UIViewController <UIGestureRecognizerDelegate, MQMapViewDelegate, EventsViewDelegate>
+=======
+#import "UserLoginViewController.h"
+
+
+@interface MainViewController : UIViewController <UIGestureRecognizerDelegate, MQMapViewDelegate, IVLELoginViewUpdater>
+>>>>>>> login function complete [including all the transitions, webview ui is
+@property (weak, nonatomic) IBOutlet UIView *mapView;
+@property (strong, nonatomic) IBOutlet UIView *sideView;
+@property (strong, nonatomic) IBOutlet UIImageView *slideArrow;
+@property MapViewController *mvController;
+@property (strong, nonatomic) IBOutlet UIButton *settingsButton;
+@property (strong, nonatomic) IBOutlet UIButton *createEventButton;
+@property (strong, nonatomic) IBOutlet UIButton *myeventsButton;
+@property (strong, nonatomic) IBOutlet UIView *filterView;
+@property (strong, nonatomic) IBOutlet UIButton *switchUsrButton;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UILabel *loginMsgLabel;
+
+@property (strong, nonatomic) IBOutlet UIButton *logoutBtn;
+@property (strong, nonatomic) UserLoginViewController *userLoginController;
+- (IBAction)logoutBtnPressed:(id)sender;
+-(void)updateIVLEViews: (BOOL) loggedIn;
+
+@end

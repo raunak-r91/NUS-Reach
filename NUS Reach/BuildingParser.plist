@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LT1</key>
+	<string>Lecture Theatre 1</string>
+	<key>LT2</key>
+	<string>Lecture Theatre 2</string>
+	<key>LT3</key>
+	<string>Lecture Theatre 3</string>
+	<key>LT4</key>
+	<string>Lecture Theatre 4</string>
+	<key>LT5</key>
+	<string>Lecture Theatre 5</string>
+	<key>LT6</key>
+	<string>Lecture Theatre 6</string>
+	<key>LT7</key>
+	<string>Lecture Theatre 7</string>
+	<key>LT7A</key>
+	<string>Lecture Theatre 7A</string>
+	<key>LT8</key>
+	<string>Lecture Theatre 8</string>
+	<key>LT9</key>
+	<string>Lecture Theatre 9</string>
+	<key>LT10</key>
+	<string>Lecture Theatre 10</string>
+	<key>LT11</key>
+	<string>Lecture Theatre 11</string>
+	<key>LT12</key>
+	<string>Lecture Theatre 12</string>
+	<key>LT13</key>
+	<string>Lecture Theatre 13</string>
+	<key>LT14</key>
+	<string>Lecture Theatre 14</string>
+	<key>LT15</key>
+	<string>Lecture Theatre 15</string>
+	<key>LT16</key>
+	<string>Lecture Theatre 16</string>
+	<key>LT17</key>
+	<string>Lecture Theatre 17</string>
+	<key>LT18</key>
+	<string>Lecture Theatre 18</string>
+	<key>LT19</key>
+	<string>Lecture Theatre 19</string>
+	<key>LT20</key>
+	<string>Lecture Theatre 20</string>
+	<key>LT21</key>
+	<string>Lecture Theatre 21</string>
+	<key>LT22</key>
+	<string>Lecture Theatre 22</string>
+	<key>LT23</key>
+	<string>Lecture Theatre 23</string>
+	<key>LT24</key>
+	<string>Lecture Theatre 24</string>
+	<key>LT25</key>
+	<string>Lecture Theatre 25</string>
+	<key>LT26</key>
+	<string>Lecture Theatre 26</string>
+	<key>LT27</key>
+	<string>Lecture Theatre 27</string>
+	<key>LT28</key>
+	<string>Lecture Theatre 28</string>
+	<key>LT29</key>
+	<string>Lecture Theatre 29</string>
+	<key>LT30</key>
+	<string>Lecture Theatre 30</string>
+	<key>LT31</key>
+	<string>Lecture Theatre 31</string>
+	<key>LT32</key>
+	<string>Lecture Theatre 32</string>
+	<key>LT33</key>
+	<string>Lecture Theatre 33</string>
+	<key>LT34</key>
+	<string>Lecture Theatre 34</string>
+	<key>SRC</key>
+	<string>Sports and Recreation Centre</string>
+	<key>Track &amp; Field </key>
+	<string>Sports and Recreation Centre</string>
+	<key>Lee Kong Chian</key>
+	<string>University Hall</string>
+	<key>CDTL</key>
+	<string>Central Library Annexe</string>
+	<key>Alumni House</key>
+	<string>Shaw Foundation Alumni House</string>
+	<key>LIB-T1</key>
+	<string>Central Library</string>
+	<key>Town Plaza</key>
+	<string>Create</string>
+</dict>
+</plist>

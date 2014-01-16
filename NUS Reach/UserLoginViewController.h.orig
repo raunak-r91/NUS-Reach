@@ -1,0 +1,34 @@
+//
+//  UserLoginViewController.h
+//  NUS Reach
+//
+//  Created by Lu Xiaodi on 29/3/13.
+//  Copyright (c) 2013 nus.cs3217. All rights reserved.
+//
+
+#import "ViewController.h"
+#import "IVLEManager.h"
+
+<<<<<<< HEAD
+@interface UserLoginViewController : ViewController{
+=======
+
+@interface UserLoginViewController : ViewController<UIWebViewDelegate>{
+>>>>>>> login function complete [including all the transitions, webview ui is
+    IBOutlet UIWebView *webView;
+    
+    //UIWebView *webView;
+    
+    bool isCssAttached;
+}
+
+
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UITextField *uidField;
+@property (strong, nonatomic) IBOutlet UITextField *pwdField;
+@property (strong, nonatomic) IBOutlet UIButton *signinBtn;
+@property (strong, nonatomic) IVLEManager* ivleManager;
+
+-(NSString*)getAccessToken:(NSString *)urlString ;
+
+@end

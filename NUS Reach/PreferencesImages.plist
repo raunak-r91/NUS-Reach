@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Sports and Recreation</key>
+	<string>sportCategory.jpg</string>
+	<key>Social Events</key>
+	<string>socialCategory.jpg</string>
+	<key>Lectures and Workshops</key>
+	<string>lectureCategory.jpg</string>
+	<key>Health and Wellness</key>
+	<string>healthCategory.jpg</string>
+	<key>Fairs and Exhibitions</key>
+	<string>exhibitionCategory.jpg</string>
+	<key>Conferences and Seminars</key>
+	<string>conferenceCategory.jpg</string>
+	<key>Arts and Entertainment</key>
+	<string>artCategory.jpg</string>
+</dict>
+</plist>

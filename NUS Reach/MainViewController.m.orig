@@ -1,0 +1,266 @@
+//
+//  MainViewController.m
+//  NUS Reach
+//
+//  Created by Raunak on 27/3/13.
+//  Copyright (c) 2013 nus.cs3217. All rights reserved.
+//
+
+#import "MainViewController.h"
+#import <MQMapKit/MQMapKit.h>
+<<<<<<< HEAD
+=======
+#import "EventsViewController.h"
+#import "IVLEManager.h"
+#import "IVLEViewUpdater.h"
+
+>>>>>>> login function complete [including all the transitions, webview ui is
+
+@interface MainViewController ()
+@property SideFilterViewController *sfController;
+@property EventsViewController *evController;
+@property IVLEManager *ivleManager;
+@end
+
+@implementation MainViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self performSelectorInBackground:@selector(setupEvents) withObject:nil];
+    [self setupMap];
+    [self addGestureForSlide];
+    [self setButtonsBottom];
+    [self setupSideFilters];
+    
+    self.slideArrow.hidden = YES;
+    self.sideView.hidden = YES;
+<<<<<<< HEAD
+
+//    EKEventStore *eventStore = [[EKEventStore alloc] init];
+//    EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
+//    event.title     = @"New Event";
+//    event.startDate = [[NSDate alloc] init];
+//    event.endDate   = [[NSDate alloc] init];
+//    event.allDay = YES;
+//    [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+//    NSError *err;
+//    [eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+
+=======
+    
+    self.ivleManager = [[IVLEManager alloc]init];
+    self.ivleManager.ivleViewUpdaterDelegate = self;
+    if (self.ivleManager.usrToken == nil || [self.ivleManager.usrToken isEqualToString:@""]){ //user not logged in
+        [self displayWhenLoggedToIVLE:NO];
+    } else { //user logged in already
+        [self displayWhenLoggedToIVLE:YES];
+    }
+    
+//    [self performSelectorInBackground:@selector(testDatabase) withObject:nil];
+>>>>>>> login function complete [including all the transitions, webview ui is
+    //add the side filters
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    CGRect sideFrame = self.sideView.frame;
+    CGRect slideArrowFrame = self.slideArrow.frame;
+    sideFrame.origin.x = -sideFrame.size.width;
+    slideArrowFrame.origin.x = 0;
+    self.sideView.frame = sideFrame;
+    self.slideArrow.frame = slideArrowFrame;
+
+    self.sideView.hidden = NO;
+    self.slideArrow.hidden = NO;
+}
+
+
+- (void)setupEvents {
+    self.evController = [[EventsViewController alloc]init];
+    self.evController.delegate = self;
+    [self.evController loadEvents:[NSDate date]];
+    [self.mvController addAnnotations:[self.evController getEventAnnotationModels]];
+}
+
+- (void)newEventCreated:(EventViewController*)newEventController {
+    [self.mvController addAnnotations:[NSArray arrayWithObject:newEventController.model]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (![segue.identifier isEqualToString: @"LoginSegue"]) {
+        [[segue destinationViewController] setDelegate:self];
+    }
+}
+
+- (void)testDatabase {
+    DatabaseHandler *testHandler = [[DatabaseHandler alloc]init];
+//    NSArray *test = [[NSArray alloc]init];
+//    test = [testHandler getAllRowsFromTable:@"AttendingList"];
+    NSDictionary *temp = [[NSDictionary alloc]initWithObjects:[NSArray arrayWithObjects:@"ishaan", @"66666", nil] forKeys:[NSArray arrayWithObjects:@"userID", @"eventID", nil]];
+    [testHandler insertRow:temp inTable:@"AttendingList"];
+}
+
+- (void)setupMap {
+    self.mvController = [[MapViewController alloc] init];
+    [self.mapView addSubview:self.mvController.view];
+}
+
+- (void)setupSideFilters {
+    self.sfController = [[SideFilterViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    CGRect toSetFrame = CGRectMake(0, 0, 0, 0);
+    toSetFrame.size = self.filterView.frame.size;
+    [self.sfController setTablesFrame: toSetFrame];
+    [self.filterView addSubview:self.sfController.view];
+    
+}
+
+- (void)setButtonsBottom {
+    //change the border style of the buttons at the bottom
+    CALayer *designSettingButtonLayer = self.settingsButton.layer;
+    //    [designSettingButtonLayer setCornerRadius:8.0f];
+    designSettingButtonLayer.masksToBounds = YES;
+    designSettingButtonLayer.borderWidth = 1.0f;
+    
+    CALayer *designCreateEventButtonLayer = self.createEventButton.layer;
+    designCreateEventButtonLayer.masksToBounds = YES;
+    designCreateEventButtonLayer.borderWidth = 1.0f;
+    
+    CALayer *designMyeventsButtonLayer = self.myeventsButton.layer;
+    designMyeventsButtonLayer.masksToBounds = YES;
+    designMyeventsButtonLayer.borderWidth = 1.0f;
+
+    CALayer *designLoginButtonLayer = self.loginButton.layer;
+    designLoginButtonLayer.masksToBounds = YES;
+    designLoginButtonLayer.borderWidth = 1.0f;
+
+}
+
+- (void)addGestureForSlide {
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(slideSidebar:)];
+    [panGesture setDelegate:self];
+    [panGesture setMinimumNumberOfTouches:1];
+    [panGesture setMaximumNumberOfTouches:1];
+    [self.slideArrow addGestureRecognizer:panGesture];
+}
+
+- (void)slideSidebar:(UIGestureRecognizer*)gesture {
+    CGPoint translationDelta =  [(UIPanGestureRecognizer*)gesture translationInView:gesture.view.superview ];
+    CGRect sideFrame = self.sideView.frame;
+    CGRect slideArrowFrame = self.slideArrow.frame;
+    CGRect mapFrame = self.mapView.frame;
+
+    if (sideFrame.origin.x >= 0 && translationDelta.x >= 0) {
+        return;
+    }
+    if([(UIPanGestureRecognizer*)gesture state] == UIGestureRecognizerStateChanged) {
+        sideFrame.origin.x  = sideFrame.origin.x+translationDelta.x;
+        sideFrame.origin.x = sideFrame.origin.x > 0? 0: sideFrame.origin.x;
+        self.sideView.frame = sideFrame;
+
+        slideArrowFrame.origin.x = sideFrame.origin.x + sideFrame.size.width;
+        self.slideArrow.frame = slideArrowFrame;
+        mapFrame.origin.x = slideArrowFrame.origin.x;
+        mapFrame.size.width = 1024 - mapFrame.origin.x;
+        self.mapView.frame = mapFrame;
+    }
+    
+    if([(UIPanGestureRecognizer*)gesture state] == UIGestureRecognizerStateEnded) {
+            [self toggleSideview];
+    }
+
+    [((UIPanGestureRecognizer*)gesture) setTranslation:CGPointMake(0, 0) inView:gesture.view.superview];
+}
+
+- (void)toggleSideview {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.3];
+    CGRect sideFrame = self.sideView.frame;
+    CGRect slideArrowFrame = self.slideArrow.frame;
+    CGRect mapFrame = self.mapView.frame;
+
+    if (fabs(sideFrame.origin.x) > sideFrame.size.width * 0.5) {
+        sideFrame.origin.x = -self.sideView.frame.size.width;
+    }
+    else {
+        sideFrame.origin.x = 0;
+    }
+    self.sideView.frame = sideFrame;
+    slideArrowFrame.origin.x = sideFrame.origin.x + sideFrame.size.width;
+    self.slideArrow.frame = slideArrowFrame;
+    
+    mapFrame.origin.x = slideArrowFrame.origin.x;
+    mapFrame.size.width = 1024 - mapFrame.origin.x;
+    self.mapView.frame = mapFrame;
+        
+    [UIView commitAnimations];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"MySegue"]) {
+//        
+//        // Get destination view
+//        SecondView *vc = [segue destinationViewController];
+//        
+//        // Get button tag number (or do whatever you need to do here, based on your object
+//        NSInteger tagIndex = [(UIButton *)sender tag];
+//        
+//        // Pass the information to your destination view
+//        [vc setSelectedButton:tagIndex];
+//    }
+//}
+
+- (void)viewDidUnload {
+    [self setMapView:nil];
+    [self setSideView:nil];
+    [self setSlideArrow:nil];
+    [self setSettingsButton:nil];
+    [self setCreateEventButton:nil];
+    [self setMyeventsButton:nil];
+    [self setFilterView:nil];
+    [self setLoginButton:nil];
+    [self setLoginButton:nil];
+    [self setSwitchUsrButton:nil];
+    [self setLoginMsgLabel:nil];
+    [self setLogoutBtn:nil];
+    [super viewDidUnload];
+}
+
+- (IBAction)logoutBtnPressed:(id)sender {
+    [self.ivleManager removeUsrToken];
+    [self updateIVLEViews:NO];
+}
+
+-(void)updateIVLEViews: (BOOL) loggedIn {
+    if (!loggedIn){
+        [self displayWhenLoggedToIVLE:NO];
+    } else {
+        [self displayWhenLoggedToIVLE:YES];
+    }
+    [self.switchUsrButton setNeedsDisplay];
+    [self.loginButton setNeedsDisplay];
+    [self.logoutBtn setNeedsDisplay];
+    [self.loginMsgLabel setNeedsDisplay];
+}
+
+- (void) displayWhenLoggedToIVLE: (BOOL)isLoggedIn {
+    if (!isLoggedIn){
+        self.switchUsrButton.hidden = YES;
+        self.loginButton.hidden = NO;
+        self.logoutBtn.hidden = YES;
+        [self.loginMsgLabel setText:@"You are not logged to IVLE"];
+    } else {
+        self.switchUsrButton.hidden = NO;
+        self.loginButton.hidden = YES;
+        self.logoutBtn.hidden = NO;
+        [self.loginMsgLabel setText:@"Welcome, Lu Xiaodi"];
+    }
+}
+
+@end
